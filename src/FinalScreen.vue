@@ -12,10 +12,11 @@
 				<div v-for='(item,i) in questions'
 				>
 					<div class="row" :class='questionClass(i)' :key='i'>
+						№ {{i+1}}
 						<div class="col">{{item.question}}</div>
-						<div class="col">Ваш ответ: {{item.userAnswer}}</div>
-						<div class="col">Правильный ответ: {{item.correctAnswer}}</div>
-						{{i}}
+						<div class="col">Ваш ответ: {{ extractAnswers(item.userAnswer) }}</div>
+						<div class="col">Правильный ответ: {{ extractAnswers(item.correctAnswer) }}</div>
+						
 					</div>
 				</div>
 			</div>
@@ -70,6 +71,10 @@
 			},
 			again() {
 				this.$emit('again');
+			},
+			extractAnswers(arr) {
+				let result = '';
+				return arr.join(' ');
 			}
 
 		},
