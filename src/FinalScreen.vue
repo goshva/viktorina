@@ -11,7 +11,7 @@
 				<hr>
 				<div v-for='(item,i) in questions'
 				>
-					<div class="row" :class='questionClass(i)' :key='i'>
+					<div class="row answer" :class='questionClass(i)' :key='i'>
 						<div class="col"> №{{i+1}} {{item.question}}</div>
 						<div class="col">Ваш ответ: {{ extractAnswers(item.userAnswer) }}</div>
 						<div class="col">Правильный ответ: {{ extractAnswers(item.correctAnswer) }}</div>
@@ -20,8 +20,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col">
+		<div class="row ">
+			<div class="col justify-content-center">
 				<button class="btn btn-success"
 					@click='again'
 				>Заново</button>
@@ -72,7 +72,7 @@
 				this.$emit('again');
 			},
 			extractAnswers(arr) {
-				return arr.join(',');
+				return arr.join(', ');
 			}
 
 		},
@@ -82,7 +82,7 @@
 </script>
 
 <style scoped>
-	.row {
+	.row.answer {
 		text-align: left;
 	}
 </style>
