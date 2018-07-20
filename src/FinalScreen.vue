@@ -12,8 +12,7 @@
 				<div v-for='(item,i) in questions'
 				>
 					<div class="row" :class='questionClass(i)' :key='i'>
-						№ {{i+1}}
-						<div class="col">{{item.question}}</div>
+						<div class="col"> №{{i+1}} {{item.question}}</div>
 						<div class="col">Ваш ответ: {{ extractAnswers(item.userAnswer) }}</div>
 						<div class="col">Правильный ответ: {{ extractAnswers(item.correctAnswer) }}</div>
 						
