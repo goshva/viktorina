@@ -37,7 +37,7 @@ export default {
           userAnswer: [],
         },
         {
-          question: 'Кто написал пьесу "На дне"',
+          question: 'Кто написал пьесу "На дне"?',
           answers: ['Горький','Достоевский','Гоголь', ],
           answerType: 'radio',
           correctAnswer: ['Горький'],

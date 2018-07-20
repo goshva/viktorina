@@ -73,8 +73,7 @@
 				this.$emit('again');
 			},
 			extractAnswers(arr) {
-				let result = '';
-				return arr.join(' ');
+				return arr.join(',');
 			}
 
 		},
@@ -83,6 +82,8 @@
 	}	
 </script>
 
-<style>
-	
+<style scoped>
+	.row {
+		text-align: left;
+	}
 </style>
