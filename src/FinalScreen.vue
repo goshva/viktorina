@@ -2,11 +2,12 @@
 	<div>
 		<div class="row">
 			<div class='col'>
-				{{howManyCorrect}}
 				<div class="progress">
 				  <div class="progress-bar" role="progressbar" :style='progressWidth'>
+				  	
 				  </div>
 				</div>
+				{{howManyCorrect}}
 				<hr>
 				<div v-for='(item,i) in questions'
 				>
