@@ -1,6 +1,6 @@
 <template>
 	<div class='row justify-content-center'>
-		<div class="col-4 ">
+		<div class="col col-lg-4 ">
 			<div class="progress">
 			  <div class="progress-bar" role="progressbar" :style='questionStage'></div>
 			</div>

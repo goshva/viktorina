@@ -35,7 +35,7 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          extractCSS: true,
+          extractCSS: isProduction,
           loaders: {
           }
           // other vue-loader options go here

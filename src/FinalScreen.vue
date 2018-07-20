@@ -2,9 +2,9 @@
 	<div>
 		<div class="row">
 			<div class='col'>
+				{{howManyCorrect}}
 				<div class="progress">
 				  <div class="progress-bar" role="progressbar" :style='progressWidth'>
-				  	{{howManyCorrect}}
 				  </div>
 				</div>
 				<hr>
