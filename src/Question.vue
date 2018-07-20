@@ -13,8 +13,9 @@
 						   name='question'
 						   v-model='userAnswer'
 						   :value='item'
+						   :id="item"
 					>
-					<label >{{item}}</label>
+					<label :for="item" >{{item}}</label>
 				</div>	
 			</div>
 			<hr>
