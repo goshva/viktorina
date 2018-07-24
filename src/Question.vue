@@ -1,33 +1,36 @@
 <template>
-	<div class='row justify-content-center' :class='animationClass'>
-		<div class="col col-lg-4 ">
-			<div class="progress">
-			  <div class="progress-bar" role="progressbar" :style='questionStage' ref='progressbar'></div>
-			</div>
-			<div class="label-name">{{question}}</div>
-			<hr>
-			<div class="question-item">
-				<div v-for='(item, index) in answers'>
-					<input :type='answerType'
-						   :key='index'
-						   name='question'
-						   v-model='userAnswer'
-						   :value='item'
-						   :id="item"
-					>
-					<label :for="item" >{{item}}</label>
-				</div>	
-			</div>
-			<hr>
-			<button  class="btn btn-success"
-			type="button"
-			:class="btnClass"
-			@click.prevent='sendUserData'
-			ref="nextQuestionBtn"
-			>Далее</button>
+	<transition enter-active-class="flipInX">
+		<div class='row justify-content-center' :key='stage'>
+			<div class="col col-lg-4 ">
+				<div class="progress">
+				  <div class="progress-bar" role="progressbar" :style='questionStage' ref='progressbar'></div>
+				</div>
+				<div class="label-name">{{question}}</div>
+				<hr>
+				<div class="question-item">
+					<div v-for='(item, index) in answers'>
+						<input :type='answerType'
+							   :key='index'
+							   name='question'
+							   v-model='userAnswer'
+							   :value='item'
+							   :id="item"
+							   :placeholder='item'
+						>
+						<label :for="item" >{{item}}</label>
+					</div>	
+				</div>
+				<hr>
+				<button  class="btn btn-success"
+				type="button"
+				:class="btnClass"
+				@click.prevent='sendUserData'
+				ref="nextQuestionBtn"
+				>Далее</button>
+				</div>
 			</div>
 		</div>
-	</div>
+	</transition>
 </template>
 
 <script>
@@ -48,9 +51,6 @@
 				let progress = (this.stage / this.questionsLength) * 100;
 				return `width:${progress}%`
 			},
-			animationClass () {
-				return this.animation ? 'flipInX' : '';
-			}
 		},
 		methods: {
 			sendUserData(e) {
@@ -58,12 +58,10 @@
 
 				this.$emit('answer', {answer: this.userAnswer})
 				this.userAnswer = [];
-				this.animation = true;
-				setTimeout( ()=>{ this.animation = false}, 805);
 			}
 		},
 		updated() {
-			console.log(1)
+			console.log(1);
 		}
 		
 	} 
@@ -73,6 +71,14 @@
 <style scoped>
 	.question-item {
 		text-align: left;
+	}
+	input[type='text'] {
+		display:block;
+		margin: 0 auto;
+		margin-bottom: 10px;
+	}
+	input[type='text'] ~ label {
+		display:none;
 	}
 
 @-webkit-keyframes flipInX {

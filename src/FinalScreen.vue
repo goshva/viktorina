@@ -47,7 +47,7 @@
 				let width = 0;
 				let that = this;
 				this.questions.forEach( (item, index) => {
-					if (that.arraysEqual(item.correctAnswer,item.userAnswer )) {
+					if (that.arraysEqual(String.prototype.toUpperCase.call(item.correctAnswer),String.prototype.toUpperCase.call(item.userAnswer)) ) {
 						correct++;
 						this.$set(this.isCorrectClass, index, true)
 					} else this.$set(this.isCorrectClass, index, false)
@@ -56,7 +56,6 @@
 				return `width:${width}%`
 			},
 			howManyCorrect() {
-				console.log(1);
 				let correct = 0;
 				this.isCorrectClass.forEach( (item) => {
 					item ? correct++ : '';

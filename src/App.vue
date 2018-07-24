@@ -56,7 +56,14 @@ export default {
           answerType: 'checkbox',
           correctAnswer: ['Бразилия','ЮАР','Россия','Индия'],
           userAnswer: [],
-        },        
+        },
+        {
+          question: 'Столица Австралии ?',
+          answers: ['писать тут'],
+          answerType: 'text',
+          correctAnswer: ['Канберра'],
+          userAnswer: [],
+        },         
 
       ],
       stage: 0,
