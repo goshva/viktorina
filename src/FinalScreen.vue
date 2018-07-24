@@ -2,12 +2,13 @@
 	<div>
 		<div class="row">
 			<div class='col'>
+				{{howManyCorrect}}
 				<div class="progress">
 				  <div class="progress-bar" role="progressbar" :style='progressWidth'>
 				  	
 				  </div>
 				</div>
-				{{howManyCorrect}}
+				
 				<hr>
 				<div v-for='(item,i) in questions'
 				>
@@ -48,13 +49,14 @@
 				this.questions.forEach( (item, index) => {
 					if (that.arraysEqual(item.correctAnswer,item.userAnswer )) {
 						correct++;
-						this.isCorrectClass[index] = true
-					} else this.isCorrectClass[index] = false
+						this.$set(this.isCorrectClass, index, true)
+					} else this.$set(this.isCorrectClass, index, false)
 				})
 				width = (correct / this.questions.length ) *100;
 				return `width:${width}%`
 			},
 			howManyCorrect() {
+				console.log(1);
 				let correct = 0;
 				this.isCorrectClass.forEach( (item) => {
 					item ? correct++ : '';

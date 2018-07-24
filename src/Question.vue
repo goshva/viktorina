@@ -1,8 +1,8 @@
 <template>
-	<div class='row justify-content-center'>
+	<div class='row justify-content-center' :class='animationClass'>
 		<div class="col col-lg-4 ">
 			<div class="progress">
-			  <div class="progress-bar" role="progressbar" :style='questionStage'></div>
+			  <div class="progress-bar" role="progressbar" :style='questionStage' ref='progressbar'></div>
 			</div>
 			<div class="label-name">{{question}}</div>
 			<hr>
@@ -22,7 +22,8 @@
 			<button  class="btn btn-success"
 			type="button"
 			:class="btnClass"
-			@click='userData'
+			@click.prevent='sendUserData'
+			ref="nextQuestionBtn"
 			>Далее</button>
 			</div>
 		</div>
@@ -35,6 +36,7 @@
 		data() {
 			return {
 				userAnswer: [],
+				animation: false,
 
 			}
 		},
@@ -45,18 +47,26 @@
 			questionStage () {
 				let progress = (this.stage / this.questionsLength) * 100;
 				return `width:${progress}%`
+			},
+			animationClass () {
+				return this.animation ? 'flipInX' : '';
 			}
 		},
 		methods: {
-			userData(e) {
+			sendUserData(e) {
 				if (e.target.classList.contains('disabled')) return;
+
 				this.$emit('answer', {answer: this.userAnswer})
 				this.userAnswer = [];
+				this.animation = true;
+				setTimeout( ()=>{ this.animation = false}, 805);
 			}
+		},
+		updated() {
+			console.log(1)
 		}
 		
-		
-	}
+	} 
 	
 </script>
 
@@ -64,5 +74,80 @@
 	.question-item {
 		text-align: left;
 	}
+
+@-webkit-keyframes flipInX {
+  from {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  60% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+
+  to {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px);
+  }
+}
+
+@keyframes flipInX {
+  from {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  60% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+
+  to {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px);
+  }
+}
+
+.flipInX {
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+  -webkit-animation-name: flipInX;
+  animation-name: flipInX;
+ -webkit- animation-duration: .8s;
+  animation-duration: .8s;
+}
 	
 </style>
