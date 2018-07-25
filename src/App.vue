@@ -1,18 +1,20 @@
 <template>
   <div id="app">
-    <Question v-if='state == "start"'
-    	:question='questions[stage].question'
-    	:answers='questions[stage].answers'
-    	:answerType='questions[stage].answerType'
-    	:stage='stage'
-    	:questionsLength='questions.length'
-		@answer="getAnswer"
-    ></Question>
-    <FinalScreen v-else-if='state == "results"'
-    			 :questions='questions'
-    			 @again='restart'
-    >
-    </FinalScreen>
+    <div class="container-fluid">
+        <Question v-if='state == "start"'
+          :question='questions[stage].question'
+          :answers='questions[stage].answers'
+          :answerType='questions[stage].answerType'
+          :stage='stage'
+          :questionsLength='questions.length'
+        @answer="getAnswer"
+        ></Question>
+        <FinalScreen v-else-if='state == "results"'
+               :questions='questions'
+               @again='restart'
+        >
+        </FinalScreen>
+    </div>
   </div>
 </template>
 
